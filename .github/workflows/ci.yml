@@ -1,13 +1,11 @@
-name: Python CI
+name: AI Agent CI Pipeline
 
-# 1. THE MISSING 'ON' PROPERTY: Tells GitHub when to run
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
-# 2. THE MISSING 'JOBS' PROPERTY: Groups the work
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -30,18 +28,19 @@ jobs:
           pip install pytest
 
       # 4. Run Tests
-    - name: Run Unit Tests
-      env:
-        GROQ_API_KEY: "dummy_key"
-        OMDB_API_KEY: "dummy_key"
-        YOUTUBE_API_KEY: "dummy_key"
-        PYTHONPATH: "."
-      run: |
-        # 1. Create the directory just in case it's missing
-        mkdir -p tests
-        
-        # 2. Create the init file
-        touch tests/__init__.py
-        
-        # 3. Run the tests using the safe -s flag
-        python -m unittest discover -s tests
+      # FIX: This block is now aligned perfectly with the steps above
+      - name: Run Unit Tests
+        env:
+          GROQ_API_KEY: "dummy_key"
+          OMDB_API_KEY: "dummy_key"
+          YOUTUBE_API_KEY: "dummy_key"
+          PYTHONPATH: "."
+        run: |
+          # 1. Create the directory just in case it's missing (Fixes the "missing file" error)
+          mkdir -p tests
+          
+          # 2. Create the init file
+          touch tests/__init__.py
+          
+          # 3. Run the tests using the safe -s flag
+          python -m unittest discover -s tests
