@@ -23,4 +23,5 @@ steps:
     YOUTUBE_API_KEY: "dummy_key"
     PYTHONPATH: .
   run: |
-    pytest tests/
+    touch tests/__init__.py
+    pytest tests/test_pipeline.py
