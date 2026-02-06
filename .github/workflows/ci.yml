@@ -29,13 +29,19 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      # 4. Run Unit Tests (With our path fixes!)
-      - name: Run Unit Tests
-        env:
-          GROQ_API_KEY: "dummy_key"
-          OMDB_API_KEY: "dummy_key"
-          YOUTUBE_API_KEY: "dummy_key"
-          PYTHONPATH: .  # Ensures the agent modules are importable
-        run: |
-          touch tests/__init__.py
-          pytest tests/test_pipeline.py
+      # 4. Run Tests
+    - name: Run Unit Tests
+      env:
+        GROQ_API_KEY: "dummy_key"
+        OMDB_API_KEY: "dummy_key"
+        YOUTUBE_API_KEY: "dummy_key"
+        PYTHONPATH: "."
+      run: |
+        # 1. Create the directory just in case it's missing
+        mkdir -p tests
+        
+        # 2. Create the init file
+        touch tests/__init__.py
+        
+        # 3. Run the tests using the safe -s flag
+        python -m unittest discover -s tests
