@@ -1,0 +1,22 @@
+# Python / Virtual Environments
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
+
+# Environment Variables (CRITICAL: Do not upload API keys!)
+.env
+
+# Streamlit
+.streamlit/
+
+# Logs
+*.log
+
+# System Files
+.DS_Store
+
+# Optional: Generated Cache
+# (Comment this out if you WANT to commit your pre-warmed cache for the demo)
+search_cache.json
