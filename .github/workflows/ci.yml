@@ -18,9 +18,9 @@ steps:
 # 4. Run Tests
 - name: Run Unit Tests
   env:
-    # We set dummy keys so the app doesn't crash on import
     GROQ_API_KEY: "dummy_key"
     OMDB_API_KEY: "dummy_key"
     YOUTUBE_API_KEY: "dummy_key"
+    PYTHONPATH: .
   run: |
-    pytest -q
+    pytest tests/
