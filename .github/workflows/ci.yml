@@ -31,12 +31,9 @@ jobs:
     # 4. Run Tests
     - name: Run Unit Tests
       env:
-        # Dummy keys to prevent startup crashes
+        # We set dummy keys so the app doesn't crash on import
         GROQ_API_KEY: "dummy_key"
         OMDB_API_KEY: "dummy_key"
         YOUTUBE_API_KEY: "dummy_key"
-        # CRITICAL: Tell Python to look for modules in the root directory
-        PYTHONPATH: "."
       run: |
-        # Use -s to specify the start directory explicitly
-        python -m unittest discover -s tests
+        python -m unittest discover tests
